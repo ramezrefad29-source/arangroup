@@ -2467,3 +2467,166 @@ button *, .nav-btn-royal *, .btn-gold-action *, .btn-write-review *, .filter-tab
         grid-template-columns: 1fr;
     }
 }
+
+/* ==========================================================
+   COMPREHENSIVE MOBILE RESPONSIVE SYSTEM (3D Models & UI)
+   ========================================================== */
+@media (max-width: 900px) {
+    nav.header {
+        flex-direction: column;
+        padding: 10px 12px !important;
+        gap: 10px;
+        background: rgba(8, 8, 12, 0.95) !important;
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    nav.header > a {
+        display: none;
+    }
+
+    .header-royal-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: 6px;
+    }
+
+    .hub-selector-wrapper {
+        padding: 5px 10px;
+        font-size: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-btn-royal {
+        padding: 8px 12px;
+        font-size: 10px;
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    #canvas-container canvas, #canvas-container-details canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .first {
+        padding: 0 5%;
+        text-align: center;
+    }
+
+    .first > h1 {
+        font-size: 12vw !important;
+        letter-spacing: 0.15em !important;
+    }
+
+    .first > h2 {
+        font-size: 10px !important;
+        letter-spacing: 0.2em !important;
+    }
+
+    .first > p.hero-text {
+        width: 95% !important;
+        font-size: 13px !important;
+        line-height: 1.7 !important;
+    }
+
+    .second-container {
+        width: 90% !important;
+        left: 5% !important;
+        padding: 20px 14px !important;
+        text-align: center;
+    }
+
+    .second-container ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .second-container li {
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+
+    .showcase-grid {
+        grid-template-columns: 1fr !important;
+        padding: 0 15px !important;
+    }
+
+    .road-track {
+        display: none !important;
+    }
+
+    .stats-counter-grid {
+        grid-template-columns: 1fr !important;
+        padding: 0 15px !important;
+    }
+
+    .ws-features-grid {
+        grid-template-columns: 1fr !important;
+        padding: 0 15px !important;
+    }
+
+    .ws-gallery {
+        grid-template-columns: 1fr !important;
+        padding: 0 15px !important;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr !important;
+        padding: 0 15px !important;
+    }
+
+    .royal-modal-card {
+        width: 94vw !important;
+        padding: 22px 15px !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+        margin: 10px auto !important;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .scanner-input-group {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .scanner-input-group input, .scanner-input-group button {
+        width: 100% !important;
+    }
+
+    .footer-top-cta {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 25px 16px !important;
+    }
+
+    .ft-cta-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 12px !important;
+    }
+
+    .ft-cta-actions button {
+        width: 100% !important;
+    }
+
+    .footer-main-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        padding: 35px 18px !important;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 12px !important;
+    }
+}

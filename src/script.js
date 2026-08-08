@@ -192,9 +192,24 @@ renderer2.outputEncoding = sRGBEncoding
 if (containerDetails) containerDetails.appendChild(renderer2.domElement)
 
 /////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
 ///// CAMERAS CONFIG
 const cameraGroup = new Group()
 scene.add(cameraGroup)
+
+function getMobileCameraZ() {
+    const w = window.innerWidth
+    if (w <= 480) return 14.2
+    if (w <= 768) return 11.5
+    return 8.8
+}
+
+function getMobileCameraY() {
+    const w = window.innerWidth
+    if (w <= 480) return 2.8
+    if (w <= 768) return 2.6
+    return 2.4
+}
 
 const camera = new PerspectiveCamera(35, width / height, 1, 100)
 camera.position.set(19, 1.54, -0.1)
@@ -206,8 +221,11 @@ camera2.rotation.set(0, 1.1, 0)
 scene.add(camera2)
 
 /////////////////////////////////////////////////////////////////////////
-///// RESPONSIVE RESIZE
+///// RESPONSIVE RESIZE FOR 3D CANVASES & MOBILE SCALING
 window.addEventListener('resize', () => {
+    const w = window.innerWidth
+    const h = window.innerHeight
+
     if (container) {
         camera.aspect = container.clientWidth / container.clientHeight
         camera.updateProjectionMatrix()
@@ -218,8 +236,9 @@ window.addEventListener('resize', () => {
         camera2.updateProjectionMatrix()
         renderer2.setSize(containerDetails.clientWidth, containerDetails.clientHeight)
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1))
-    renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 1))
+    
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer2.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
 /////////////////////////////////////////////////////////////////////////
@@ -253,9 +272,11 @@ function clearScene() {
 }
 
 /////////////////////////////////////////////////////////////////////////
-//// INTRO CAMERA ANIMATION
+//// INTRO CAMERA ANIMATION (MOBILE RESPONSIVE TARGETS)
 function introAnimation() {
-    new TWEEN.Tween(camera.position.set(0, 4, 2.7)).to({ x: 0, y: 2.4, z: 8.8 }, 3500).easing(TWEEN.Easing.Quadratic.InOut).start()
+    const targetZ = getMobileCameraZ()
+    const targetY = getMobileCameraY()
+    new TWEEN.Tween(camera.position.set(0, 4, 2.7)).to({ x: 0, y: targetY, z: targetZ }, 3500).easing(TWEEN.Easing.Quadratic.InOut).start()
     .onComplete(function () {
         TWEEN.remove(this)
     })
@@ -299,7 +320,16 @@ if (elEuphre) {
 }
 
 function animateCamera(position, rotation) {
-    new TWEEN.Tween(camera2.position).to(position, 1800).easing(TWEEN.Easing.Quadratic.InOut).start()
+    const isMobile = window.innerWidth <= 768
+    const isSmallMobile = window.innerWidth <= 480
+    const pos = { ...position }
+    if (isSmallMobile) {
+        pos.z = pos.z * 1.55
+        pos.y = pos.y * 1.15
+    } else if (isMobile) {
+        pos.z = pos.z * 1.3
+    }
+    new TWEEN.Tween(camera2.position).to(pos, 1800).easing(TWEEN.Easing.Quadratic.InOut).start()
     .onComplete(function () { TWEEN.remove(this) })
 
     new TWEEN.Tween(camera2.rotation).to(rotation, 1800).easing(TWEEN.Easing.Quadratic.InOut).start()
